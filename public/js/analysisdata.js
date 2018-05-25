@@ -220,7 +220,7 @@ function setableform(selected_genes,n,file_name)
                             //先将tbody中所有的行隐藏，再通过slice结合当前页数和页面显示的数目展现数据
                             });
                             var sumRows=$table.find('tbody tr').length;//获取数据总行数
-                            //alert(sumRows);
+                            
                             var sumPages=Math.ceil(sumRows/pageSize);//得到总页数
                             var $pager=$('<ul class="pager"></ul>');
 
@@ -254,7 +254,7 @@ var comUrl="/GEsture/index.php/File/readoperfile1";
                         success: function (data) {
 				$("#searchModal").modal("hide");
                            if(data['flag']==4){
-                             alert('sorry,please try again!');
+                             alert('sorry,the network is bad,please try again later!');
                           }else{
                            if(data['flag']==110){
                             setdata(data['newy'],n);
@@ -301,11 +301,11 @@ var comUrl="/GEsture/index.php/File/readoperfile1";
 
 function aline(genename)
 {
-    //alert(genename);
+    
     var comUrl="/GEsture/index.php/File/oneline";
     var filelink=$("#linkf").val();
     var filename=$("#file_name").val();
-  //  alert(filename);
+  
     $.ajax({
                         type: 'post',
                         url: comUrl,
@@ -335,7 +335,7 @@ function bline(genename)//画cluster出来的图
                         dataType: 'json',
                         async: true,
                         success: function (data) {
-                            //alert(data['choosegene']);
+                           
                             SetOtherData(data['choosegene'],data['n']);
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -347,7 +347,7 @@ function bline(genename)//画cluster出来的图
 
 function show_download(num,title,content)
 {
-  // alert(num);
+  
     panel="#panel"+num;
     var html="";
      $(panel).html("");
@@ -445,7 +445,7 @@ function edit_contrast()
    
      var hash = {};  
     if(arry.length===0||arry.length<=2)
-       {// alert("please draw the curve first!!");
+       {
          document.getElementById("attention_content").innerText = "please draw the curve first!";
          // $('#attention_content').value="please draw the curve first!";
           $("#attention").modal("show");
@@ -457,7 +457,7 @@ function edit_contrast()
         if(arry.length!=len&&arrx[arrx.length-1]!=len)
           {   document.getElementById("attention_content").innerText = "please search after brush pattern!";
           $("#attention").modal("show");
-             // alert('please search after brush pattern!');
+             
               var x=document.getElementsByName("pattern");
        if(x[0].checked==false)
            x[0].checked=true;
@@ -537,7 +537,7 @@ var comUrl="/GEsture/index.php/File/readoperfile2";
                         success: function (data) {
                         $("#searchModal").modal("hide");
                          if(data['flag']==2){
-                           alert("Sorry,please try again!");
+                           alert("Sorry,the network is bad,please try again later!");
                           }else{
                            if(data['flag']==110){
                           // setInterval1(data['c'],data['min'],data['max']);
@@ -703,7 +703,7 @@ function readoperfile3(filelink)
                         success: function (data) {
                          $("#searchModal").modal("hide");
                           if(data['flag']==3){
-                          alert("Sorry,please try again!");
+                          alert("Sorry,the network is bad,please try again later!");
                           }else{
                             if(data['flag']==110){
                             document.getElementById("attention_content").innerText = "no shift expression result!";
@@ -776,7 +776,7 @@ function setableform2(selected_shiftgenes,n,file_name)
                                   }
                                 html+="</tr>"; 
                             }
-                            //alert(genetable_content.length);
+                           
                             html+="<input type='hidden' id='file_name' value="+file_name+">";
                            $('#insert_selected_genes').html(html);
                            if(!$("#showtable").is(":visible"))
@@ -789,7 +789,7 @@ function setableform2(selected_shiftgenes,n,file_name)
                             //先将tbody中所有的行隐藏，再通过slice结合当前页数和页面显示的数目展现数据
                             });
                             var sumRows=$table.find('tbody tr').length;//获取数据总行数
-                            //alert(sumRows);
+                            
                             var sumPages=Math.ceil(sumRows/pageSize);//得到总页数
                             var $pager=$('<ul class="pager"></ul>');
 
@@ -927,7 +927,7 @@ function filltable(goal,file_name)
                             //先将tbody中所有的行隐藏，再通过slice结合当前页数和页面显示的数目展现数据
                             });
                             var sumRows=$table.find('tbody tr').length;//获取数据总行数
-                            //alert(sumRows);
+                            
                             var sumPages=Math.ceil(sumRows/pageSize);//得到总页数
                             var $pager=$('<ul class="pager"></ul>');
 
@@ -978,7 +978,7 @@ function line_change(slideEvt)
 		}
 
 	}
-	//alert(lc_tabledata);
+	
 	SetOtherData(lc_gene,n-start);//drawaxes.js中
 	if(row==0)
 		flag=0;

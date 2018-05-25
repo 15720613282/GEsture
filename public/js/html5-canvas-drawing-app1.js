@@ -454,7 +454,7 @@ function Show(d, data, colw, rowh){
 
     c.fillStyle = '#0A0A0A';//'#0ff';
 
-    c.font = '9px verdana';
+    c.font = '11px verdana';
 
     c.textBaseline = 'top';
         var j = 0;

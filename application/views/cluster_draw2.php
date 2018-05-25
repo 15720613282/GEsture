@@ -189,7 +189,8 @@ Cluster number:<input placeholder="default 16" id="kinds" type="text"/>&nbsp;&nb
 <script type="text/javascript">
 
  jQuery(document).ready(function($){
-     var count='<?=$count ?>';
+     var count='<?=$count ?>';//聚类的个数
+     var ccount='<?=$ccount ?>';//数据的列数（维度）
      var dmax='<?=$dmax ?>';
      var dmin='<?=$dmin ?>';
      var gedata=new Array();
@@ -204,7 +205,7 @@ Cluster number:<input placeholder="default 16" id="kinds" type="text"/>&nbsp;&nb
                             i=i+1;
                         <?php } ?>
 
-   drawback(gedata,count,dmax,dmin);
+   drawback(gedata,ccount,count,dmax,dmin);
 
 });
 </script>

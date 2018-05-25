@@ -8,6 +8,7 @@ var re=[];
 
 function setInterval(xx,cmax,cmin){
    xh=xx;
+   
     yl=parseFloat(cmin);//.toFixed(2);
     yh=parseFloat(cmax);
     if(xx>10&&xx<=40)
@@ -22,16 +23,16 @@ function setInterval(xx,cmax,cmin){
         xInterval=100;
     ydist=yh-yl;
     yInterval=ydist/10;
-   //alert("yInterval:"+yInterval);
+  
 
     for(var i=0; i<=xh;i++){
         re[i]=i*xInterval;  
     }
 }
-function drawback(data,count,cmax,cmin){
+function drawback(data,ccount,count,cmax,cmin){
 
-    //alert(data);
-    setInterval(count,cmax,cmin);
+   
+    setInterval(ccount,cmax,cmin);
 
     var ccc=document.getElementById("canvas0");
    if (ccc.getContext) {
@@ -48,7 +49,7 @@ function drawback(data,count,cmax,cmin){
         colw =  ccc.offsetWidth / (xh/100);
     }
     rowh=30;
-    //alert("colw: "+colw);
+   
     for(var i=0;i<count;i++){
        var tc="canvas"+i;
        List[i]=data[i];
@@ -92,23 +93,22 @@ function drawback(data,count,cmax,cmin){
             c.fillText(yl, 5,300);
             c.stroke();
            
- //alert(List[i]);
+ 
     Show1(c,List[i],can.offsetHeight,colw,rowh);
     }
 }
 
 function Show1(o, data, ht,colw, rowh){
 
-   //alert(data);
+  
     o.beginPath();
-    //alert(rowh);
     //var i=Math.ceil(Math.random()*8);
-    //alert('arr[0].length:'+arr[0].length);
+   
     o.fillStyle = o.strokeStyle ="#FF4040";
       for(var j=0; j<data.length; j++){
         // var resultTimeIndex=compareTime(Data.Time,arr.Data[j].time);
         var resultTimeIndex=compareTime(j+1);
-        
+       
         if(resultTimeIndex!=null){
             var distanceToOrigin=(j+1>=xInterval? j+1-xInterval*resultTimeIndex:j+1)/xInterval*colw+resultTimeIndex*colw; 
             for(var k=yl;k<=yh;k=k+yInterval)
@@ -116,10 +116,12 @@ function Show1(o, data, ht,colw, rowh){
                 if(k>=data[j])
                     break;
             }
+           
             yi=parseFloat((yh-k)*rowh)/yInterval+parseFloat((k-data[j])*rowh)/yInterval;
-            o.lineTo(distanceToOrigin,yi);
-            
+           o.lineTo(distanceToOrigin,yi);
+         
         }
+           
         /*if(resultTimeIndex!=null){
             var distanceToOrigin=(arr.Data[j].time>=xInterval?arr.Data[j].time-xInterval*resultTimeIndex:arr.Data[j].time)/xInterval*colw+resultTimeIndex*colw;
             if(text) {
@@ -141,10 +143,11 @@ function Show1(o, data, ht,colw, rowh){
 }
 
 function compareTime(timeStr){
-    //alert("re="+re);
+   
     outer:  for(var i = 0; i<re.length; i++){
         var d1=timeStr;
         var d2=re[i];
+       
         var s;
         if(d1>d2)
             s=1;
@@ -197,10 +200,9 @@ function line()
     var method="K";
     var number=$("#kinds").val();
     var filelink=$("#linkf").val();
-    //alert(filelink);
     if(number=='')
         number=16;
-   // alert(number);
+   
     $("#t2").hide();
     $("#t3").show();
     var filename=$("#f").val();
@@ -262,7 +264,8 @@ function line()
                                 }
 
                         $('#drawlines').html(html);*/
-                        drawback(data['gdata'],data['count'],data['dmax'],data['dmin']);
+                       
+                        drawback(data['gdata'],data['ccount'],data['count'],data['dmax'],data['dmin']);
                         changetips();
                             
                        } },

@@ -1,7 +1,7 @@
 function [r,p,newy]=shift(a_value,readfilename,username,L,R)
 %set(0,'diaryFile',outfilename);
 %diary
-filename=strcat('/home/yening/cyw/web//File/',username);
+filename=strcat('/home/yening/cyw/web/File/',username);
 filename=strcat(filename,'/');
 mx=csvread(fullfile(filename,'/write1.csv'));
 my=csvread(fullfile(filename,'/write2.csv'));

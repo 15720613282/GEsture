@@ -53,11 +53,14 @@
       <li class="active">File</li>
     </ol>
 </div>
+ <div class="row">
  <font size="5">example files:</font>&nbsp;&nbsp;&nbsp;<select id="select_file" onchange="change_pic();"  style="font-family: Arial, Helvetica, sans-serif; background-color: rgb(255, 255, 255);" >
     <option value="yeastExpression.csv" selected>yeastExpression.csv</option>
     <option value="Arabidopsis.csv">Arabidopsis.csv</option>
     
 </select>
+&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-exclamation-sign"></span><font size="4">Tips:</font> After choosing a file,click the  <strong>Next</strong> button directly,the example files have been uploaded.
+</div>
  <br>
  <div class="row">
  <img id="img1" src="<?=base_url('public/images/screen1.png')?>" style="width:100%; height:100%; z-index:-1" />
@@ -74,8 +77,7 @@
 </div>
     <br/>
     <button class="btn btn-success" id="btnNext" onclick="clustera()" type="button">Next<i class="icon-circle-arrow-right" aria-hidden="true"></i></button>
-
-
+<br/><br/>
 </div>
 <footer class="footer">
   <div class="container">
@@ -88,8 +90,12 @@
 <script type="text/javascript">
 function change_pic()
 {
+  var str=document.getElementById('select_file').value;
   var element = document.getElementById('img1');
-  element.src = "<?=base_url('public/images/screen2.png')?>";
+  if(str=="Arabidopsis.csv")
+      element.src = "<?=base_url('public/images/screen2.png')?>";
+  else
+      element.src = "<?=base_url('public/images/screen1.png')?>";
 }
 
 function clustera(){

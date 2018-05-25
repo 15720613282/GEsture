@@ -200,6 +200,8 @@
                         <option value="-2">-2</option>
                         <option value="-3">-3</option>
                         <option value="-4">-4</option>
+                        <option value="-5">-5</option>
+                        <option value="-6">-6</option>
                       </select>
                     <i class="icon-bulb"></i>
                     <span class="title"><font color="black" size="5">--</font></span>
@@ -209,6 +211,8 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                       </select>
     </h5> 
 
@@ -730,7 +734,7 @@ function cyshow(data)
                                      'font-family': 'helvetica',
                                      'font-size': 10,
                                      'text-valign': 'center',
-                                     'color': '#333333',
+                                     'color': '#000000',//#333333',
                                      'opacity':0.7,
                                      'width':80,
                                      'height':80,
@@ -746,7 +750,7 @@ function cyshow(data)
                                      'font-family': 'helvetica',
                                      'font-size': 10,
                                      'text-valign': 'center',
-                                     'color': '#333333',
+                                     'color':'#000000', //'#333333',
                                      'opacity':0.7,
                                      'width':80,
                                      'height':80,
@@ -762,7 +766,7 @@ function cyshow(data)
                                      'font-family': 'helvetica',
                                      'font-size': 10,
                                      'text-valign': 'center',
-                                     'color': '#333333',
+                                     'color': '#000000',//'#333333',
                                      'opacity':0.7,
                                      'width':80,
                                      'height':80,
@@ -778,7 +782,7 @@ function cyshow(data)
                                      'font-family': 'helvetica',
                                      'font-size': 10,
                                      'text-valign': 'center',
-                                     'color': '#333333',
+                                     'color': '#000000',//'#333333',
                                      'opacity':0.7,
                                      'width':80,
                                      'height':80,
@@ -793,7 +797,7 @@ function cyshow(data)
                                      'font-family': 'helvetica',
                                      'font-size': 20,
                                      'text-valign': 'center',
-                                     'color': '#333333',
+                                     'color': '#000000',//'#333333',
                                      'opacity':0.7, 
                                      'width':100,
                                      'height':100,

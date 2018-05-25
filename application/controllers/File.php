@@ -91,8 +91,8 @@ class File extends CI_Controller {
                 while ($data = fgetcsv($file4)) { //每次读取CSV里面的一行内容
                                                 
                     $ldata['gdata'][$row]=$data;
-                   //var_dump($ldata['gdata']);
-                    for($i=0;$i<count($data);$i++)
+                     $ccount=count($data);// $data的列数
+                    for($i=0;$i<$ccount;$i++)
                        { if($max<$data[$i])
                           $max=$data[$i];
                          if($min>$data[$i])
@@ -101,7 +101,8 @@ class File extends CI_Controller {
                      $row++;
             }
               fclose($file4);
-              $ldata['count']=$row;
+              $ldata['count']=$row;//行数
+              $ldata['ccount']=$ccount;
                $max=ceil($max);$min=floor($min);
               $ldata['dmax']=$max;
               $ldata['dmin']=$min;
@@ -370,6 +371,25 @@ public function c_oneline()
             mkdir($file_path2); 
         $filename=$_FILES['input_file']['name'];
         move_uploaded_file($_FILES['input_file']['tmp_name'],$file_path.$filename);
+        $filep=$file_path.$filename;
+        $file=fopen($filep,'r');
+        $row_content=fgetcsv($file);
+        fclose($file);
+        $cc=count($row_content);
+        
+        if($cc<=2)
+         { $data['flag']=0;
+           $bool=unlink($filep);
+           //$bool=rmdir($file_path2);
+         }
+        else
+        { $str=$row_content[1];
+          if(!is_numeric($str))
+             $data['flag']=0;
+          else
+             $data['flag']=1;
+        }
+
         $data['filename']=$filename;
         $data['link']=$name;
         echo  json_encode($data);
@@ -1533,8 +1553,8 @@ $cmin=100000;
         while ($data = fgetcsv($file4)) { //每次读取CSV里面的一行内容
                                         //print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
             $ldata['gdata'][$row]=$data;
-           //var_dump($ldata['gdata']);
-            for($i=0;$i<count($data);$i++)
+            $ccount=count($data);
+            for($i=0;$i<$ccount;$i++)
                { if($max<$data[$i])
                   $max=$data[$i];
                  if($min>$data[$i])
@@ -1544,6 +1564,7 @@ $cmin=100000;
         }
         fclose($file4);
     $ldata['count']=$row;
+    $ldata['ccount']=$ccount;//dimension
      $max=ceil($max);$min=floor($min);
     $ldata['dmax']=$max;
     $ldata['dmin']=$min;
@@ -1567,7 +1588,8 @@ $cmin=100000;
         while ($data = fgetcsv($file4)) { //每次读取CSV里面的一行内容
                                         //print_r($data); //此为一个数组，要获得每一个数据，访问数组下标即可
             $ldata['gdata'][$row]=$data;
-            for($i=0;$i<count($data);$i++)
+            $ccount=count($data);
+            for($i=0;$i<$ccount;$i++)
                { if($max<$data[$i])
                   $max=$data[$i];
                  if($min>$data[$i])
@@ -1577,6 +1599,7 @@ $cmin=100000;
         }
         fclose($file4);
     $ldata['count']=$row;
+    $ldata['ccount']=$ccount;//dimension
      $max=ceil($max);$min=floor($min);
     $ldata['dmax']=$max;
     $ldata['dmin']=$min;
@@ -1591,8 +1614,15 @@ $cmin=100000;
     {
         $filelink=$_POST['filelink'];
         $filename=$_POST['filename'];
+        $flag1=$_POST['flag1'];
         $sheet=0;$min=100000;$max=-100000;
         $filePath="uploads/".$filelink."/".$filename;
+        if($flag1=='1')
+        {
+         system("unset DISPLAY");//删除DISPLAY环境变量
+        $text="Normalize_file(".'\''.$filelink.'\''.','.'\''.$filename.'\''.")";
+        $cok= shell_exec("matlab -nodisplay -nojvm -r "."\"".$text."\" &");
+        }
         $file_size=filesize($filePath);
         $file_size/=pow(1024,2);
          if($file_size<=7){
